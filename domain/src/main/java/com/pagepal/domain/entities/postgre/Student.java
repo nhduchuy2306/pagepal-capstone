@@ -1,5 +1,6 @@
-package com.pagepal.domain.entities;
+package com.pagepal.domain.entities.postgre;
 
+import com.pagepal.domain.entities.BaseEntity;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,7 +20,7 @@ import java.util.UUID;
 @Table(name = "student")
 @Where(clause = "is_deleted = false")
 @AttributeOverride(name = "id", column = @Column(name = "student_id"))
-public class Student extends BaseEntity{
+public class Student extends BaseEntity {
     @Column(name = "student_name")
     private String name;
 

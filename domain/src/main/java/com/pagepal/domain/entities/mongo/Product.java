@@ -1,4 +1,4 @@
-package com.pagepal.domain.entities;
+package com.pagepal.domain.entities.mongo;
 
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package com.pagepal.application.mappers;
 
 import com.pagepal.application.dtos.StudentDto;
-import com.pagepal.domain.entities.Student;
+import com.pagepal.domain.entities.postgre.Student;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

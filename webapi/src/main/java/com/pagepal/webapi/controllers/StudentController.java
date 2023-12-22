@@ -1,7 +1,7 @@
 package com.pagepal.webapi.controllers;
 
 import com.pagepal.application.services.StudentService;
-import com.pagepal.domain.entities.Student;
+import com.pagepal.domain.entities.postgre.Student;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;

@@ -1,7 +1,7 @@
 package com.pagepal.application.services.impl;
 
 import com.pagepal.application.services.StudentService;
-import com.pagepal.domain.entities.Student;
+import com.pagepal.domain.entities.postgre.Student;
 import com.pagepal.infrastructure.repositories.postgre.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

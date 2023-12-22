@@ -1,6 +1,6 @@
 package com.pagepal.webapi.repositories;
 
-import com.pagepal.domain.entities.Student;
+import com.pagepal.domain.entities.postgre.Student;
 import com.pagepal.infrastructure.repositories.postgre.StudentRepository;
 import com.pagepal.webapi.WebapiApplication;
 import org.junit.Before;
