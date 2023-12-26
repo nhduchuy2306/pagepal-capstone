@@ -1,20 +1,25 @@
-package com.pagepal.domain.entities;
+package com.pagepal.domain.entities.postgre;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pagepal.domain.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Where;
 
-import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Data
-@MappedSuperclass
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseEntity {
+@Entity
+@Table(name = "WALLET_TYPE")
+@Where(clause = "status = 'ACTIVE'")
+public class WalletType {
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -24,23 +29,17 @@ public class BaseEntity {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private Date createdAt = new Date();
+    @Column(name = "name")
+    private String name;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at")
-    private Date updatedAt = new Date();
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "deleted_at")
-    private Date deletedAt;
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private Status status = Status.ACTIVE;
+    private Status status;
 
-    public BaseEntity(UUID id) {
-        this.id = id;
-    }
+    @OneToMany(mappedBy = "walletType", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Wallet> wallets;
 }
