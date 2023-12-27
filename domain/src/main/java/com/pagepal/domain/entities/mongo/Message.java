@@ -17,7 +17,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @Document(collection = "MESSAGES")
 public class Message {
-
     @Id
     private UUID id;
 
@@ -35,4 +34,6 @@ public class Message {
 
     @Field("state")
     private MessageStateEnum state;
+
+    private Conversation conversation;
 }

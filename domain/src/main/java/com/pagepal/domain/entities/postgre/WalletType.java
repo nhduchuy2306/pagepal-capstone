@@ -1,6 +1,6 @@
 package com.pagepal.domain.entities.postgre;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.pagepal.domain.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -40,6 +40,6 @@ public class WalletType {
     private Status status;
 
     @OneToMany(mappedBy = "walletType", fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonBackReference
     private List<Wallet> wallets;
 }

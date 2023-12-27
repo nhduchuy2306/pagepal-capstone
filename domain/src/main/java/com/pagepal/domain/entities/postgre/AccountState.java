@@ -1,5 +1,6 @@
 package com.pagepal.domain.entities.postgre;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pagepal.domain.enums.Status;
 import jakarta.persistence.*;
@@ -8,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -17,7 +18,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "ACCOUNT_STATE")
 public class AccountState {
-
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -35,6 +35,6 @@ public class AccountState {
     private Status status;
 
     @OneToMany(mappedBy = "accountState", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<Account> accounts;
+    @JsonBackReference
+    private List<Account> accounts;
 }

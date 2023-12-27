@@ -2,8 +2,8 @@ package com.pagepal.domain.entities.postgre;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.pagepal.domain.enums.RequestStateEnum;
+import com.pagepal.domain.enums.CampaignEnum;
+import com.pagepal.domain.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,16 +13,15 @@ import org.hibernate.annotations.Where;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "REQUEST")
+@Table(name = "CAMPAIGN")
 @Where(clause = "status = 'ACTIVE'")
-public class Request {
+public class Campaign {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -32,25 +31,36 @@ public class Request {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
+    @Column(name = "title")
+    private String title;
+
     @Column(name = "description")
     private String description;
 
+    @Column(name = "start_at")
+    private Date startAt;
+
+    @Column(name = "end_at")
+    private Date endAt;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(name = "sale_limit")
+    private Integer saleLimit;
+
+    @Column(name = "exp_of_promotion")
+    private Date expOfPromotion;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
     @Column(name = "state")
     @Enumerated(EnumType.STRING)
-    private RequestStateEnum state;
+    private CampaignEnum state;
 
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    @Column(name = "updated_at")
-    private Date updatedAt;
-
-    @OneToMany(mappedBy = "request", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "campaign", fetch = FetchType.LAZY)
     @JsonBackReference
-    private List<Answer> answers;
-
-    @ManyToOne
-    @JoinColumn(name = "reader_id")
-    @JsonManagedReference
-    private Reader reader;
+    private List<Promotion> promotions;
 }

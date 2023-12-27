@@ -1,6 +1,6 @@
 package com.pagepal.domain.enums;
 
-public enum MessageTypeEnum {
+public enum MeetingEnum {
     AVAILABLE,
     UNAVAILABLE,
 }

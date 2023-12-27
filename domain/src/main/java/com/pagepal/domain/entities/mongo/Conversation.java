@@ -1,5 +1,7 @@
 package com.pagepal.domain.entities.mongo;
 
+import com.pagepal.domain.entities.postgre.Customer;
+import com.pagepal.domain.entities.postgre.Reader;
 import com.pagepal.domain.enums.Status;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -16,7 +18,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @Document(collection = "CONVERSATIONS")
 public class Conversation {
-
     @Id
     private UUID id;
 
@@ -34,4 +35,8 @@ public class Conversation {
 
     @Field("status")
     private Status status;
+
+    private Reader reader;
+
+    private Customer customer;
 }

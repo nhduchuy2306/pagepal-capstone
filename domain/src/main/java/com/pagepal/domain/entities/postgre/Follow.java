@@ -1,9 +1,6 @@
 package com.pagepal.domain.entities.postgre;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.pagepal.domain.enums.RequestStateEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,17 +9,15 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Where;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "REQUEST")
+@Table(name = "FOLLOW")
 @Where(clause = "status = 'ACTIVE'")
-public class Request {
+public class Follow {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -32,22 +27,13 @@ public class Request {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "state")
-    @Enumerated(EnumType.STRING)
-    private RequestStateEnum state;
-
     @Column(name = "created_at")
     private Date createdAt;
 
-    @Column(name = "updated_at")
-    private Date updatedAt;
-
-    @OneToMany(mappedBy = "request", fetch = FetchType.LAZY)
-    @JsonBackReference
-    private List<Answer> answers;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    @JsonManagedReference
+    private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "reader_id")
