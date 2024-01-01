@@ -1,3 +1,0 @@
-type Mutation{
-    createRole(name: String!): Role!
-}
